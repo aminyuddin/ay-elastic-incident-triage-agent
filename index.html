@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incident Portal — Elasticsearch Agent Builder Hackathon</title>
+  <meta name="description" content="Context-driven incident response demo for the Elasticsearch Agent Builder Hackathon. Create, list, and close tickets via MCP and Kibana." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Login: shown when not authenticated -->
+    <section id="login-section" class="login-wrap">
+      <div class="login-card panel">
+        <div class="login-hero">
+          <span class="login-badge">Elasticsearch Agent Builder Hackathon</span>
+          <h1>Incident Portal</h1>
+          <p class="subtitle">Context-driven incident response. Create and manage tickets from Kibana via MCP tools.</p>
+        </div>
+        <form id="login-form">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" autocomplete="username" placeholder="admin" value="admin" />
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" placeholder="admin" value="admin" />
+          <button type="submit" class="btn-primary">Log in</button>
+        </form>
+        <p id="login-error" class="error" aria-live="polite"></p>
+        <p class="login-demo">Demo: <code>admin</code> / <code>admin</code></p>
+      </div>
+      <footer class="app-footer">
+        <a href="https://elasticsearch.devpost.com/" target="_blank" rel="noopener noreferrer">Elasticsearch Agent Builder Hackathon</a> · Build context-driven agents with Elasticsearch
+      </footer>
+    </section>
+
+    <!-- Portal: shown when logged in -->
+    <div id="portal" class="hidden">
+      <header class="header">
+        <div class="header-brand">
+          <h1>Incident Portal</h1>
+          <p class="subtitle">Agent Builder + MCP · Create, list, close incidents</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" id="open-create-modal" class="btn-primary">Create ticket</button>
+          <button type="button" id="logout-btn" class="btn-secondary">Log out</button>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <!-- List (main focus) and detail in same panel -->
+        <section id="list-section" class="panel panel-list">
+          <div class="list-view">
+            <h2>Incidents</h2>
+            <div class="filter-tabs" role="tablist" aria-label="Filter by status">
+              <button type="button" id="filter-all" class="filter-tab active" role="tab" aria-selected="true">All</button>
+              <button type="button" id="filter-open" class="filter-tab" role="tab" aria-selected="false">Open</button>
+              <button type="button" id="filter-closed" class="filter-tab" role="tab" aria-selected="false">Closed</button>
+            </div>
+            <div id="incident-list"></div>
+          </div>
+          <div class="detail-view hidden">
+            <button type="button" id="detail-back" class="btn-secondary">← Back to list</button>
+            <div id="incident-detail"></div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Create ticket modal -->
+      <div id="create-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="create-modal-title">
+        <div class="modal-overlay" id="create-modal-overlay"></div>
+        <div class="modal-box">
+          <div class="modal-header">
+            <h2 id="create-modal-title">Create incident</h2>
+            <button type="button" class="modal-close" id="create-modal-close" aria-label="Close">×</button>
+          </div>
+          <form id="create-incident-form">
+            <div class="row">
+              <label for="incident_id">Incident ID</label>
+              <input type="text" id="incident_id" name="incident_id" placeholder="INC-CRIT-1001" required />
+            </div>
+            <div class="row">
+              <label for="severity">Severity</label>
+              <select id="severity" name="severity" required>
+                <option value="LOW">LOW</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="HIGH">HIGH</option>
+                <option value="CRITICAL">CRITICAL</option>
+              </select>
+            </div>
+            <div class="row">
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title" placeholder="e.g. Production payment failures" required />
+            </div>
+            <div class="row">
+              <label for="description">Description</label>
+              <textarea id="description" name="description" rows="3" placeholder="Brief description of the incident"></textarea>
+            </div>
+            <div class="row">
+              <label for="affected_services">Affected services (comma-separated)</label>
+              <input type="text" id="affected_services" name="affected_services" placeholder="payments-api, auth-service" />
+            </div>
+            <div class="row">
+              <label for="compliance_risk">Compliance risk</label>
+              <select id="compliance_risk" name="compliance_risk">
+                <option value="NONE">NONE</option>
+                <option value="LOW">LOW</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="HIGH">HIGH</option>
+              </select>
+            </div>
+            <div class="row">
+              <label for="recommended_actions">Recommended actions (one per line)</label>
+              <textarea id="recommended_actions" name="recommended_actions" rows="3" placeholder="Isolate auth-service&#10;Suspend payments-api"></textarea>
+            </div>
+            <div class="modal-actions">
+              <button type="button" class="btn-secondary" id="create-modal-cancel">Cancel</button>
+              <button type="submit" class="btn-primary">Create ticket</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <footer class="app-footer app-footer-inline">
+        <a href="https://elasticsearch.devpost.com/" target="_blank" rel="noopener noreferrer">Elasticsearch Agent Builder Hackathon</a>
+      </footer>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

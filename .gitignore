@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+build/
+
+# Environment (keep .env.example)
+.env
+.env.local
+.env.*.local
+
+# Firebase
+.firebase/
+.firebaserc
+*-debug.log
+*-debug.log.*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Optional
+coverage/
+*.tsbuildinfo
+
+# Generated demo data (elastic-incident-triage-agent)
+elastic-incident-triage-agent/data/*.ndjson
+*.ndjson

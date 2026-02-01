@@ -1,0 +1,14 @@
+// DEMO ONLY — Hackathon / demo incident portal.
+// These rules allow open read/write for development and demonstration.
+// Do NOT use in production; restrict by auth and validation in real deployments.
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Open read/write for incidents collection (demo only).
+    // In production you would restrict by Firebase Auth or App Check.
+    match /incidents/{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

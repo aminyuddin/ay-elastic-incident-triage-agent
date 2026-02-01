@@ -1,0 +1,19 @@
+{
+  "name": "incident-portal-mcp-server",
+  "version": "0.0.1",
+  "description": "MCP server for Incident Portal — create_incident and list_incidents (Firestore)",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.1",
+    "express": "^5.1.0",
+    "firebase-admin": "^13.0.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  }
+}
