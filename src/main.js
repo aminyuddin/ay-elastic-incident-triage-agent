@@ -176,7 +176,24 @@ async function loadIncidents() {
       return tb - ta;
     });
     if (incidents.length === 0) {
-      incidentListEl.innerHTML = '<p class="empty">No incidents' + (currentStatusFilter ? ' in this filter.' : ' yet.') + '</p>';
+      const emptyMessage = currentStatusFilter
+        ? 'No incidents match this filter. Try "All" or create a new ticket.'
+        : 'No incidents yet. Create your first ticket or wait for the agent to create one via MCP.';
+      incidentListEl.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon" aria-hidden="true">📋</div>
+          <p class="empty-state-title">${currentStatusFilter ? 'No matches' : 'No incidents yet'}</p>
+          <p class="empty-state-message">${escapeHtml(emptyMessage)}</p>
+          <button type="button" class="btn-primary empty-state-create">Create your first ticket</button>
+        </div>
+      `;
+      const createBtn = incidentListEl.querySelector('.empty-state-create');
+      if (createBtn) createBtn.addEventListener('click', openCreateModal);
+      if (refreshBtn && refreshText) {
+        refreshBtn.classList.remove('refresh-spin');
+        refreshText.textContent = 'Reload';
+        refreshBtn.disabled = false;
+      }
       return;
     }
     incidentListEl.innerHTML = incidents
