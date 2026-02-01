@@ -1,7 +1,7 @@
 # Incident Portal — Elastic Agent Builder Hackathon
 
 <p align="center">
-  <img src="docs/logo.png" alt="AY Elastic Incident Triage Agent — AI-powered Incident Analysis & Compliance Automation" width="480" />
+  <img src="docs/logo-header.png" alt="AY Elastic Incident Triage Agent — AI-powered Incident Analysis & Compliance Automation" width="480" />
 </p>
 
 > **Incident portal + MCP server for Elastic Agent Builder. AY Elastic Incident Triage Agent: ES|QL log analysis, create/list/close/reopen tickets. Vite, Firebase, Firestore.**

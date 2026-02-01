@@ -16,6 +16,7 @@
     <section id="login-section" class="login-wrap">
       <div class="login-card panel">
         <div class="login-hero">
+          <img src="/docs/logo-header.png" alt="AY Elastic Incident Triage Agent" class="login-logo" width="200" height="auto" />
           <span class="login-badge">Elasticsearch Agent Builder Hackathon</span>
           <h1>Incident Portal</h1>
           <p class="subtitle">Context-driven incident response. Create and manage tickets from Kibana via MCP tools.</p>
@@ -39,8 +40,11 @@
     <div id="portal" class="hidden">
       <header class="header">
         <div class="header-brand">
-          <h1>Incident Portal</h1>
-          <p class="subtitle">Agent Builder + MCP · Create, list, close incidents</p>
+          <img src="/docs/logo-header.png" alt="" class="header-logo" aria-hidden="true" />
+          <div>
+            <h1>Incident Portal</h1>
+            <p class="subtitle">Agent Builder + MCP · Create, list, close incidents</p>
+          </div>
         </div>
         <div class="header-actions">
           <button type="button" id="open-create-modal" class="btn-primary">Create ticket</button>
@@ -52,7 +56,12 @@
         <!-- List (main focus) and detail in same panel -->
         <section id="list-section" class="panel panel-list">
           <div class="list-view">
-            <h2>Incidents</h2>
+            <div class="list-header">
+              <h2>Incidents</h2>
+              <div class="list-header-actions">
+                <button type="button" id="refresh-btn" class="btn-secondary btn-refresh" aria-label="Reload incident list"><span class="btn-refresh-text">Reload</span></button>
+              </div>
+            </div>
             <div class="filter-tabs" role="tablist" aria-label="Filter by status">
               <button type="button" id="filter-all" class="filter-tab active" role="tab" aria-selected="true">All</button>
               <button type="button" id="filter-open" class="filter-tab" role="tab" aria-selected="false">Open</button>

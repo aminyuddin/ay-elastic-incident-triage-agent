@@ -78,6 +78,14 @@ body {
   margin-bottom: var(--space-xl);
 }
 
+.login-logo {
+  display: block;
+  margin: 0 auto var(--space-lg);
+  max-width: 200px;
+  height: auto;
+  border-radius: var(--radius);
+}
+
 .login-badge {
   display: inline-block;
   font-size: 0.75rem;
@@ -197,23 +205,39 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space);
+  gap: var(--space-lg);
   margin-bottom: var(--space-lg);
-  padding-bottom: var(--space);
+  padding: var(--space-lg) 0;
   border-bottom: 1px solid var(--border);
 }
 
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.header-logo {
+  flex-shrink: 0;
+  height: 4rem;
+  width: auto;
+  min-height: 56px;
+  object-fit: contain;
+  border-radius: var(--radius);
+  vertical-align: middle;
+}
+
 .header-brand h1 {
-  font-size: 1.35rem;
+  font-size: 1.75rem;
   font-weight: 700;
   margin: 0;
   color: var(--text-strong);
 }
 
 .header .subtitle {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  margin: 0.25rem 0 0 0;
+  margin: 0.35rem 0 0 0;
 }
 
 .btn-secondary {
@@ -261,6 +285,37 @@ body {
 .list-view,
 .detail-view {
   min-height: 0;
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space);
+  margin-bottom: var(--space);
+}
+
+.list-header h2 {
+  margin: 0;
+}
+
+.list-header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.btn-refresh {
+  flex-shrink: 0;
+  min-width: 6.5rem;
+}
+
+.btn-refresh.refresh-spin .btn-refresh-text {
+  animation: refresh-pulse 0.8s ease-in-out infinite;
+}
+
+@keyframes refresh-pulse {
+  from { opacity: 1; }
+  to { opacity: 0.6; }
 }
 
 .detail-view .btn-secondary {

@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prebuild": "node -e \"const fs=require('fs'); const p='public/docs'; fs.mkdirSync(p,{recursive:true}); if(fs.existsSync('docs/logo-header.png')) fs.copyFileSync('docs/logo-header.png', p+'/logo-header.png');\"",
+    "postinstall": "node -e \"const fs=require('fs'); const p='public/docs'; fs.mkdirSync(p,{recursive:true}); if(fs.existsSync('docs/logo-header.png')) fs.copyFileSync('docs/logo-header.png', p+'/logo-header.png');\""
   },
   "dependencies": {
     "firebase": "^11.0.0"

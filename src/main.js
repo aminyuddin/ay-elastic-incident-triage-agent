@@ -41,6 +41,7 @@ const openCreateModalBtn = document.getElementById('open-create-modal');
 const createModalClose = document.getElementById('create-modal-close');
 const createModalOverlay = document.getElementById('create-modal-overlay');
 const createModalCancel = document.getElementById('create-modal-cancel');
+const refreshBtn = document.getElementById('refresh-btn');
 
 // --- Render based on auth ---
 function showPortal(show) {
@@ -81,6 +82,11 @@ loginForm?.addEventListener('submit', (e) => {
 logoutBtn?.addEventListener('click', () => {
   authLogout();
   showPortal(false);
+});
+
+// --- Refresh incident list ---
+refreshBtn?.addEventListener('click', () => {
+  loadIncidents();
 });
 
 // --- Create ticket modal ---
@@ -149,6 +155,13 @@ function setFilterActive(status) {
 }
 
 async function loadIncidents() {
+  const refreshBtn = document.getElementById('refresh-btn');
+  const refreshText = refreshBtn?.querySelector('.btn-refresh-text');
+  if (refreshBtn && refreshText) {
+    refreshBtn.disabled = true;
+    refreshText.textContent = 'Reloading..';
+    refreshBtn.classList.add('refresh-spin');
+  }
   incidentListEl.innerHTML = '<p class="loading">Loading…</p>';
   try {
     const opts = currentStatusFilter ? { status: currentStatusFilter } : {};
@@ -189,10 +202,20 @@ async function loadIncidents() {
     incidentListEl.querySelectorAll('.incident-card').forEach((el) => {
       el.addEventListener('click', () => showDetail(el.dataset.id, incidents));
     });
+    if (refreshBtn && refreshText) {
+      refreshBtn.classList.remove('refresh-spin');
+      refreshText.textContent = 'Reload';
+      refreshBtn.disabled = false;
+    }
   } catch (err) {
     console.error(err);
     incidentListEl.innerHTML =
       '<p class="error">Failed to load incidents. Check Firebase config and rules.</p>';
+    if (refreshBtn && refreshText) {
+      refreshBtn.classList.remove('refresh-spin');
+      refreshText.textContent = 'Reload';
+      refreshBtn.disabled = false;
+    }
   }
 }
 
