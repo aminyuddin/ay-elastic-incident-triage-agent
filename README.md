@@ -1,5 +1,7 @@
 # Incident Portal — Elastic Agent Builder Hackathon
 
+> **Incident portal + MCP server for Elastic Agent Builder. AY Elastic Incident Triage Agent: ES|QL log analysis, create/list/close/reopen tickets. Vite, Firebase, Firestore.**
+
 A lightweight **incident management portal** demo for the **Elasticsearch Agent Builder Hackathon**. An AI agent (e.g. Elastic Agent Builder with ES|QL) can **create, list, close, and reopen** incident tickets via an **MCP-style integration**; operators use a simple web UI to view and manage them.
 
 **Stack:** Vite (frontend), Firebase Hosting, Firestore, demo login (`admin`/`admin`). MCP server runs as a **Cloud Function** (same URL as the portal) or a **standalone Node server**.

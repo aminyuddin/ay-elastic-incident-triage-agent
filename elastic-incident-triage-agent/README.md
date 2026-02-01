@@ -26,7 +26,7 @@ A **multi-step AI agent** built with **Elastic Agent Builder** and **Elasticsear
 | **Output style** | [demo/DEMO_FLOW_DESCRIPTION.md](demo/DEMO_FLOW_DESCRIPTION.md) | How the demo is presented (inspiration, 1990's VCR style, labels). |
 | **Agent instructions** | [agent/agent_instructions.md](agent/agent_instructions.md) | Full system prompt for the agent (workflow, MCP usage, CONFIRM gate, severity/compliance rules). |
 | **MCP tools** | [agent/mcp_tools.md](agent/mcp_tools.md) | Description of list_incidents, create_incident, close_incident, reopen_incident. |
-| **ES|QL tools** | [agent/retrieve_recent_incident_logs.md](agent/retrieve_recent_incident_logs.md), [agent/summarize_incidents_by_id.md](agent/summarize_incidents_by_id.md) | Log retrieval and aggregation by incident.id. |
+| **ES&#124;QL tools** | [agent/retrieve_recent_incident_logs.md](agent/retrieve_recent_incident_logs.md), [agent/summarize_incidents_by_id.md](agent/summarize_incidents_by_id.md) | Log retrieval (ERROR/WARN, last 30 min) and aggregation by incident.id for severity and compliance analysis. |
 | **Generate logs** | [data/generate_latest_logs_multi_incident.py](data/generate_latest_logs_multi_incident.py) | Python script to create multi-incident NDJSON for Elasticsearch. |
 | **Scripts** | [scripts/delete_data.sh](scripts/delete_data.sh), [scripts/ingest_logs.sh](scripts/ingest_logs.sh), [scripts/verify_count.sh](scripts/verify_count.sh) | Reset index, bulk ingest, verify document count. |
 | **Devpost text** | [DEVPOST_DESCRIPTION.md](DEVPOST_DESCRIPTION.md) | Submission description (Inspiration, What it does, How we built it, etc.). |
